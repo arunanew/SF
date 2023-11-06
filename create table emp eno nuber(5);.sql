@@ -1,0 +1,1 @@
+create table emp eno nuber(5);
