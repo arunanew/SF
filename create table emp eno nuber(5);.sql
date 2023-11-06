@@ -1,1 +1,2 @@
-create table emp eno nuber(5);
+
+create table emp (eno varchar(2))
