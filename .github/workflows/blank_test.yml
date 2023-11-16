@@ -1,0 +1,27 @@
+#setting up needed variables
+env: 
+ SNOWFLAKE_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+ SNOWFLAKE_USER: ${{ secrets.SF_USER }}
+ SNOWFLAKE_ROLE: ${{ secrets.SF_ROLE }}
+ SNOWFLAKE_PASSWORD: ${{ secrets.SF_PASSWORD }}
+ SNOWFLAKE_WH: ${{ secrets.SF_WAREHOUSE}}
+ SNOWFLAKE_DB: ${{ secrets.SF_DATABASE }}
+ SNOWFLAKE_URL: ${{ secrets.SF_URL }}
+ SNOWFLAKE_SCHEMA: ${{ secrets.SF_SCHEMA }}
+ SCHEMACHANGE_VAR: ${{ secrets.SCHEMACHANGE_VAR_PRE }}
+ 
+  jobs:
+ deploy-Snowflake-changes:
+   runs-on: ubuntu-latest
+   steps:
+       - name: Setup Python 3.8.x
+         uses: actions/setup-python@v2.2.1
+         with:
+           python-version: 3.8.x
+ 
+       — name: Repo checkout
+         uses: actions/checkout@v2
+       - name: run schemachange!
+         run: |
+           pip install schemachange
+           schemachange -f $arunanew/SF -a     $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WH -c $SNOWFLAKE_DB.METADATA.CHANGE_HISTORY — var $SCHEMACHANGE_VAR
