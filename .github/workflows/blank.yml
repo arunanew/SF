@@ -1,0 +1,24 @@
+<databaseChangeLog>
+
+  <changeSet id="1" author="alice">
+    <loadData
+      file="data.csv"
+      tableName="persons">
+    </loadData>
+  </changeSet>
+
+</databaseChangeLog>
+
+
+name: Install Liquibase
+  run: |
+    pip install liquibase-snowflake
+name: Configure Liquibase
+  env:
+    SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}  
+    SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+    SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+
+  run: |  
+    python -m liquibase --changeLogFile=db/changelog.xml --url=snowflake://$SNOWFLAKE_ACCOUNT --username=$SNOWFLAKE_USER --password=$SNOWFLAKE_PASSWORD  update
+    
