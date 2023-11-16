@@ -10,7 +10,7 @@ env:
  SNOWFLAKE_SCHEMA: ${{ secrets.SF_SCHEMA }}
  SCHEMACHANGE_VAR: ${{ secrets.SCHEMACHANGE_VAR_PRE }}
  
-  jobs:
+ jobs:
  deploy-Snowflake-changes:
    runs-on: ubuntu-latest
    steps:
