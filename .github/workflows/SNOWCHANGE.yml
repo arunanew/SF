@@ -1,4 +1,4 @@
-#setting up needed variables
+#setting up needed variables 
 env: 
  SNOWFLAKE_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
  SNOWFLAKE_USER: ${{ secrets.SF_USER }}
