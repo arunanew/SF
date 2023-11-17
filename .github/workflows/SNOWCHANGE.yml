@@ -40,4 +40,4 @@ echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
 echo "Step 1: Installing schemachange"
   pip install schemachange
 echo "Step 2: Running schemachange"
-schemachange -f sf -a KQ15501 -u $ARUNA1208 -r ACCOUNTADMIN -w COMPUTE_WH -d ARUNA -c SF_DATABASE.TEST_SCHEMA.SALES_DATA --create-sales-data-table
+schemachange -f sf -a KQ15501 -u ARUNA1208 -r ACCOUNTADMIN -w COMPUTE_WH -d ARUNA -c SF_DATABASE.TEST_SCHEMA.SALES_DATA --create-sales-data-table
