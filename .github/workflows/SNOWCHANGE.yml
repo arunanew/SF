@@ -40,4 +40,4 @@ echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
 echo "Step 1: Installing schemachange"
   pip install schemachange
 echo "Step 2: Running schemachange"
-schemachange -f $GITHUB_WORKSPACE/sf -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.TEST_SCHEMA.SALES_DATA --create-change-history-table
+schemachange -f arunanew/sf -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.TEST_SCHEMA.SALES_DATA --create-change-history-table
