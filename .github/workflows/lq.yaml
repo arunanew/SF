@@ -22,4 +22,4 @@ jobs:
           # continue-on-error: true
            - name: Execute Liquibase Update
           run: |
-          liquibase --changeLogFile=path/to/changelog.xml --defaultsFile=path/to/lq.properties update
+          liquibase --changeLogFile=path/to/changelog.xml --defaultsFile=https://github.com/arunanew/SF/blob/Test_SF/lb.properties update
