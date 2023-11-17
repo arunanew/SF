@@ -1,3 +1,5 @@
+name: deploy-Snowflake-changes
+
 #setting up needed variables 
 env: 
  SNOWFLAKE_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
