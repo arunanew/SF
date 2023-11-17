@@ -4,14 +4,19 @@ on:
   push:
     branches:
       - main
-
+/ (root) 
+|- /src
+   |- changelog.xml
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+
+        - name: Install Dependencies
+          run: npm install
 
       - name: Install and Configure Liquibase
         run: |
