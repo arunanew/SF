@@ -20,6 +20,6 @@ jobs:
           export PATH=$PATH:$PWD/liquibase
           # echo "Process completed successfully or with exit code $?"
           # continue-on-error: true
-      # - name: Execute Liquibase Update
-      #   run: |
-      #     liquibase --changeLogFile=path/to/changelog.xml --defaultsFile=path/to/lq.properties update
+           - name: Execute Liquibase Update
+          run: |
+          liquibase --changeLogFile=path/to/changelog.xml --defaultsFile=path/to/lq.properties update
