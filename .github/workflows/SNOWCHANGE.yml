@@ -1,15 +1,46 @@
-name: deploy-Snowflake-changes
+name: SNOWCHANGE
 
-#setting up needed variables 
-env: 
- SNOWFLAKE_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
- SNOWFLAKE_USER: ${{ secrets.SF_USER }}
- SNOWFLAKE_ROLE: ${{ secrets.SF_ROLE }}
- SNOWFLAKE_PASSWORD: ${{ secrets.SF_PASSWORD }}
- SNOWFLAKE_WH: ${{ secrets.SF_WAREHOUSE}}
- SNOWFLAKE_DB: ${{ secrets.SF_DATABASE }}
- SNOWFLAKE_URL: ${{ secrets.SF_URL }}
- SNOWFLAKE_SCHEMA: ${{ secrets.SF_SCHEMA }}
+# Controls when the action will run. 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'SF**'
+
+jobs:
+  deploy-snowflake-changes-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+  - name: Use Python 3.8.x
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: 3.8.x
+
+      - name: Run schemachange
+        env:
+        SNOWFLAKE_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+        SNOWFLAKE_USER: ${{ secrets.SF_USER }}
+        SNOWFLAKE_ROLE: ${{ secrets.SF_ROLE }}
+        SNOWFLAKE_PASSWORD: ${{ secrets.SF_PASSWORD }}
+        SNOWFLAKE_WH: ${{ secrets.SF_WAREHOUSE}}
+        SNOWFLAKE_DB: ${{ secrets.SF_DATABASE }}
+        SNOWFLAKE_URL: ${{ secrets.SF_URL }}
+        SNOWFLAKE_SCHEMA: ${{ secrets.SF_SCHEMA }}
+
+        run: |
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          python --version
+          echo "Step 1: Installing schemachange"
+          pip install schemachange
+
+          cho "Step 2: Running schemachange"
+          schemachange -f $GITHUB_WORKSPACE/dbscripts -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
 
  
   jobs:
