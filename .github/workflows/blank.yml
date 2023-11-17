@@ -1,24 +1,33 @@
-<databaseChangeLog>
-
-  <changeSet id="1" author="alice">
-    <loadData
-      file="data.csv"
-      tableName="persons">
-    </loadData>
-  </changeSet>
-
-</databaseChangeLog>
-
-
-name: Install Liquibase
+- name: Install and Configure Liquibase
   run: |
-    pip install liquibase-snowflake
-name: Configure Liquibase
-  env:
-    SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}  
-    SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-    SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-
-  run: |  
-    python -m liquibase --changeLogFile=db/changelog.xml --url=snowflake://$SNOWFLAKE_ACCOUNT --username=$SNOWFLAKE_USER --password=$SNOWFLAKE_PASSWORD  update
+    wget https://github.com/liquibase/liquibase/releases/download/v4.18.2/liquibase-4.18.2.tar.gz
+    tar -xzf liquibase-4.18.2.tar.gz
+    export PATH=$PATH:$PWD/liquibase
+- name: Execute Liquibase Update
+  run: |
+    liquibase --changeLogFile=path/to/changelog.xml --defaultsFile=path/to/liquibase.properties update
     
+name: Liquibase Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install and Configure Liquibase
+        run: |
+          wget https://github.com/liquibase/liquibase/releases/download/v4.18.2/liquibase-4.18.2.tar.gz
+          tar -xzf liquibase-4.18.2.tar.gz
+          export PATH=$PATH:$PWD/liquibase
+
+      - name: Execute Liquibase Update
+        run: |
+          liquibase --changeLogFile=path/to/changelog.xml --defaultsFile=path/to/liquibase.properties update
