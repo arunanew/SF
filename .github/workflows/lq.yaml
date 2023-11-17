@@ -18,8 +18,8 @@ jobs:
           wget https://github.com/liquibase/liquibase/releases/download/v4.25.0/liquibase-4.25.0.tar.gz
           tar -xzf liquibase-4.25.0.tar.gz
           export PATH=$PATH:$PWD/liquibase
-          echo "Process completed successfully or with exit code $?"
+          # echo "Process completed successfully or with exit code $?"
           continue-on-error: true
       - name: Execute Liquibase Update
         run: |
-          liquibase --changeLogFile=path/to/changelog.xml --defaultsFile=path/to/liquibase.properties update
+          liquibase --changeLogFile=path/to/changelog.xml --defaultsFile=path/to/lq.properties update
