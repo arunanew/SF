@@ -17,8 +17,8 @@ jobs:
 
       - name: Install and Configure Liquibase
         run: |
-          wget https://github.com/liquibase/liquibase/releases/download/v4.20.1/liquibase-4.20.1.tar.gz
-          tar -xzf liquibase-4.20.1.tar.gz
+          wget https://github.com/liquibase/liquibase/releases/download/v4.25.0/liquibase-4.20.1.tar.gz
+          tar -xzf liquibase-4.25.0.tar.gz
           export PATH=$PATH:$PWD/liquibase
 
       - name: Execute Liquibase Update
