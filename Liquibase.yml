@@ -3,7 +3,7 @@ name: Liquibase Deployment
 on:
   push:
     branches:
-      - main
+      - 'SF/**'
 
 jobs:
   deploy:
