@@ -1,0 +1,26 @@
+name: Liquibase Deployment
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+     - 'arunanew/SF/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install and Configure Liquibase
+        run: |
+          wget https://github.com/liquibase/liquibase/releases/download/v4.20.1/liquibase-4.20.1.tar.gz
+          tar -xzf liquibase-4.20.1.tar.gz
+          export PATH=$PATH:$PWD/liquibase
+
+      - name: Execute Liquibase Update
+        run: |
+          liquibase --changeLogFile= '/arunanew/SF/Changeset.xml' --defaultsFile='/arunanew/SF/lb.properties' update
