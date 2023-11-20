@@ -23,4 +23,4 @@ jobs:
 
       - name: Execute Liquibase Update
         run: |
-          liquibase --changeLogFile= arunanew/SF/Changeset.xml --defaultsFile=arunanew/SF/lb.properties update
+          liquibase --changeLogFile= '/arunanew/SF/Changeset.xml' --defaultsFile='/arunanew/SF/lb.properties' update
