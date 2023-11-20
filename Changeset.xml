@@ -4,7 +4,7 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
     <changeSet id="moveFileToSnowflake" author="Aruna">
         <!-- Add your changes here -->
-        <sqlFile path="arunanew/SF/blob/Test_SF/SF.sql"/>
+        <sqlFile path="arunanew/SF/SF.sql">
         <!-- Add any additional changes or SQL statements -->
     </changeSet>
 </databaseChangeLog>
